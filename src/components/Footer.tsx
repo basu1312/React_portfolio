@@ -1,5 +1,4 @@
 
-import React from 'react'
 import profile from '../data/profile'
 
 const Footer: React.FC = () => (

@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import profile from '../data/profile'
 
@@ -9,9 +8,9 @@ const Hero: React.FC = () => {
       <motion.h1 initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
         Hi, I'm {profile.name}
       </motion.h1>
-      <motion.p initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }}>
-        {intro}
-      </motion.p>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
+          <div className="hero-subtitle">{intro} <span className="typewriter-wrap"><Typewriter words={words} /></span></div>
+        </motion.div>
       <div style={{ marginTop: 18, display: 'flex', gap: 12, justifyContent: 'center' }}>
         <motion.a href="#projects" className="cta" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
           View Projects

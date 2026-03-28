@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import React from 'react'
 import type { Project } from '../data/projects'
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
