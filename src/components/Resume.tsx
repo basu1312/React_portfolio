@@ -1,4 +1,3 @@
-import React from 'react'
 import profile from '../data/profile'
 import projects from '../data/projects'
 

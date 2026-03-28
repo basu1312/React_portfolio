@@ -1,6 +1,5 @@
-import React from 'react'
-import profile from '../data/profile'
 import { motion } from 'framer-motion'
+import profile from '../data/profile'
 
 const About: React.FC = () => (
   <section id="about" className="container about">

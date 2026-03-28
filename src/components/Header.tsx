@@ -1,4 +1,3 @@
-import React from 'react'
 import profile from '../data/profile'
 
 const Header: React.FC = () => {
