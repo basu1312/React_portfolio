@@ -1,0 +1,43 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: ['dev', 'master']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Lint
+        run: |
+          cd frontend
+          npm run lint
+
+      - name: Format Check
+        run: |
+          cd frontend
+          npx prettier --check .
+
+      - name: Run Tests
+        run: |
+          cd frontend
+          npm test -- --watchAll=false
+
+      - name: Build
+        run: |
+          cd frontend
+          npm run build
