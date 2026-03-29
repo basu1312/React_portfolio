@@ -1,12 +1,33 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import type { Project } from '../data/projects'
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+  const [imgError, setImgError] = useState(false)
+
+  const media = project.image && !imgError ? (
+    <div className="card-media">
+      <img src={project.image} alt={project.title} onError={() => setImgError(true)} />
+      <div className="media-caption">
+        <h3>{project.title}</h3>
+        <p className="media-sub">{project.description}</p>
+      </div>
+    </div>
+  ) : (
+    <div className="card-media placeholder">
+      <div className="media-caption">
+        <h3>{project.title}</h3>
+        <p className="media-sub">{project.description}</p>
+      </div>
+    </div>
+  )
+
   const body = (
     <>
+      {media}
       <div className="card-body">
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
+        {!media && <h3>{project.title}</h3>}
+        {!media && <p>{project.description}</p>}
         <div className="tags">{project.tags.map((t) => <span key={t} className="tag">{t}</span>)}</div>
       </div>
       {project.link && (
@@ -26,10 +47,11 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         href={project.link}
         target="_blank"
         rel="noreferrer"
-        initial={{ y: 8, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: 12, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
         whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.24 }}
+        transition={{ duration: 0.36 }}
       >
         {body}
       </motion.a>
@@ -40,10 +62,11 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     <motion.div
       className="card project-card"
       role="article"
-      initial={{ y: 8, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: 12, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
       whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.24 }}
+      transition={{ duration: 0.36 }}
     >
       {body}
     </motion.div>

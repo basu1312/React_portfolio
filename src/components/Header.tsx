@@ -9,13 +9,15 @@ const Header: React.FC = () => {
           <a className="logo" href="#">{profile.name}</a>
         </div>
 
-        <div className="header-right">
+        <div className="header-center">
           <nav>
-            <a href="#projects">Projects</a>
-            <a href="#about">About</a>
-            <a href="#resume">Resume</a>
+            <a href="#projects">Selected Projects</a>
+            <a href="#about">About Me</a>
             <a href="#contact">Contact</a>
           </nav>
+        </div>
+
+        <div className="header-right">
           <ThemeToggle />
         </div>
       </div>

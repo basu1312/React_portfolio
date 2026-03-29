@@ -6,7 +6,15 @@ const profile = {
   email: 'basu1312@gmail.com',
   linkedin: 'https://www.linkedin.com',
   github: '',
-  summary: `Senior Frontend Engineer with 7+ years delivering scalable, secure, and high-performance web applications for enterprise banking and financial systems. Expertise in React, TypeScript, micro-frontend architecture, design systems, and modern UI engineering with emphasis on maintainability, accessibility, and performance optimization. Experienced in design systems, component-driven development, and large-scale modernization initiatives, including migration of legacy platforms to React-based micro-frontend ecosystems. Skilled in CI/CD pipeline automation, testing practices, and Agile collaboration. Hands-on experience with AI-assisted engineering workflows, Retrieval Augmented Generation (RAG), and Model Context Protocol (MCP) systems to accelerate development while maintaining enterprise security, strong type safety, and WCAG accessibility compliance.`,
+  summary: `Lead Frontend Engineer with 7+ years delivering scalable, secure, and high-performance web applications for
+enterprise banking and financial systems. Expertise in React, TypeScript, micro-frontend architecture, design systems,
+and modern UI engineering with emphasis on maintainability, accessibility, and performance optimization.
+Experienced in design systems, component-driven development, and large-scale modernization initiatives, including
+migration of legacy platforms to React-based micro-frontend ecosystems. Skilled in CI/CD pipeline automation, testing
+practices, and Agile collaboration.
+Hands-on experience with AI-assisted engineering workflows, Retrieval Augmented Generation (RAG), and Model
+Context Protocol (MCP) systems to accelerate development while maintaining enterprise security, strong type safety,
+and WCAG accessibility compliance.`,
   experiences: [
     {
       role: 'Consultant – Lead Frontend Engineer',
@@ -19,7 +27,7 @@ const profile = {
       bullets: [
         'Led frontend engineering for a Denmark-based banking platform, defining UI architecture, engineering standards, and long-term maintainability strategy.',
         'Led migration from legacy Gemini platforms to a modern React-based micro-frontend architecture.',
-        'Implemented AI-assisted React and TypeScript development workflows, improving engineering productivity by 40–60% while enforcing WCAG accessibility compliance and strong type safety across 58+ Sapphire Design System components.',
+        'Implemented AI-assisted React and TypeScript development workflows, improving engineering productivity by 40–60% while enforcing WCAG accessibility compliance and strong type safety across 58+ Design System components.',
         'Designed RAG-based service architecture using TypeScript-first engineering patterns with MCP fallback mechanisms.',
         'Implemented Module Federation architecture using Webpack and architected Azure DevOps CI/CD pipelines.',
       ],

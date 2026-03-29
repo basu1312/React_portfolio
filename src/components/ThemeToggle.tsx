@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const ThemeToggle: React.FC = () => {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     try {
-      return (localStorage.getItem('theme') as 'dark' | 'light') || 'dark'
+      return (localStorage.getItem('theme') as 'dark' | 'light') || 'light'
     } catch {
-      return 'dark'
+      return 'light'
     }
   })
 

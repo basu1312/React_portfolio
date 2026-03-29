@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const Typewriter: React.FC<{ words: string[]; period?: number }> = ({ words, period = 2600 }) => {
   const [index, setIndex] = useState(0)
