@@ -4,8 +4,8 @@ const profile = {
   location: 'Bengaluru, Karnataka, India',
   phone: '+91 8929945828',
   email: 'basu1312@gmail.com',
-  linkedin: 'https://www.linkedin.com',
-  github: '',
+  linkedin: 'https://www.linkedin.com/in/basusharma1312/',
+  github: 'https://github.com/basu1312/React_portfolio',
   summary: `Lead Frontend Engineer with 7+ years delivering scalable, secure, and high-performance web applications for
 enterprise banking and financial systems. Expertise in React, TypeScript, micro-frontend architecture, design systems,
 and modern UI engineering with emphasis on maintainability, accessibility, and performance optimization.
@@ -67,32 +67,32 @@ and WCAG accessibility compliance.`,
       'Component Driven Development',
       'Performance Optimization',
     ],
-    ui: ['Material UI', 'Styled Components', 'Storybook', 'Design Systems'],
-    ai: ['RAG', 'MCP', 'GitHub Copilot', 'Prompt Engineering'],
+    UI: ['Material UI', 'Styled Components', 'Storybook', 'Design Systems'],
+    AI: ['RAG', 'MCP', 'GitHub Copilot', 'Prompt Engineering'],
     testing: [
       'React Testing Library',
       'Jest',
       'Unit Testing',
       'Component Testing',
     ],
-    apis: ['REST APIs', 'Swagger', 'Postman'],
-    auth: ['OIDC', 'JWT', 'RBAC'],
-    devops: [
+    APIs: ['REST APIs', 'Swagger', 'Postman'],
+    Auth: ['OIDC', 'JWT', 'RBAC'],
+    DevOps: [
       'Git',
       'GitHub Actions',
       'Azure DevOps Pipelines',
       'CI/CD Automation',
     ],
-    tools: ['SonarQube', 'Jira', 'Figma'],
-    accessibility: ['WCAG 2.1', 'NVDA Screen Reader Testing'],
+    Tools: ['SonarQube', 'Jira', 'Figma'],
+    Accessibility: ['WCAG 2.1', 'NVDA Screen Reader Testing'],
   },
-  certifications: [
+  Certifications: [
     'Functional Programming with JavaScript ES6+ – LinkedIn Learning',
     'Modern React with Redux – Infosys',
     'Jira Board Configuration – Atlassian',
     'AWS Certified AI Practitioner – Amazon Web Services',
   ],
-  education: {
+  Education: {
     school: 'Dr D.Y. Patil College of Engineering – Pune, Maharashtra',
     degree: 'Bachelor of Engineering (Electronics & Telecommunication)',
   },
