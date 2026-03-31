@@ -1,0 +1,33 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: ['master', 'dev']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enable Corepack (for pnpm)
+        run: corepack enable
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Lint (skip if not configured)
+        run: pnpm run lint || echo "No lint script"
+
+      - name: Format Check (optional)
+        run: pnpm dlx prettier --check . || echo "Prettier not configured"
+
+      - name: Build
+        run: pnpm run build

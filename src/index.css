@@ -36,7 +36,7 @@ body {
 }
 
 .container {
-  max-width: var(--maxw);
+  max-width: 90rem;
   padding: 90px 24px;
   margin: 0 auto
 }
@@ -83,7 +83,7 @@ body {
 
 .hero {
   text-align: center;
-  padding: 140px 0 80px
+  padding: 180px 0 150px
 }
 
 .hero-subtitle {
@@ -184,7 +184,7 @@ body {
   position: relative;
   overflow: hidden;
   transition: transform .18s ease, box-shadow .18s ease;
-  background: linear-gradient(90deg, #0f1724, #b58f40);
+  background: linear-gradient(0deg, #101f38, #2a515a);
   color: #ffffff;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
   border: 0
@@ -223,7 +223,7 @@ body {
 /* Ensure ghost/primary variants match the same color for consistency */
 .cta-primary,
 .cta-ghost {
-  background: linear-gradient(90deg, #0f1724, #b58f40);
+  background: linear-gradient(0deg, #101f38, #2a515a);
   color: #ffffff;
   border: 0
 }
