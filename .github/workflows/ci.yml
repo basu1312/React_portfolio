@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout
+      # 1. Checkout code (required for Sonar PR analysis)
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2. Setup Node
+      # 2. Setup Node (Vite requires Node 20+)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -29,11 +29,11 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      # 5. Lint
+      # 5. Lint (optional)
       - name: Lint
         run: pnpm run lint || echo "No lint configured"
 
-      # 6. Build
+      # 6. Build (Vite → dist/)
       - name: Build
         run: pnpm run build
 
@@ -49,14 +49,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
 
-      # 8. Quality Gate
+      # 8. Quality Gate (FAIL PR if bad)
       - name: Sonar Quality Gate
         uses: SonarSource/sonarqube-quality-gate-action@v1
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # 9. Upload artifact
+      # 9. Upload build artifact
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
