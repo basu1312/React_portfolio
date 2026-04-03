@@ -14,14 +14,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. Setup Node (FORCE NPM ONLY)
+      # 2. Setup Node (NO CACHE)
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
           node-version: 20
-          cache: 'npm' # ✅ FORCE npm (prevents pnpm detection)
 
-      # 3. Install pnpm manually (SAFE)
+      # 3. Install pnpm manually
       - name: Install pnpm
         run: |
           npm install -g pnpm@10
