@@ -10,8 +10,7 @@ jobs:
 
     steps:
       # 1. Checkout
-      - name: Checkout Code
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -19,14 +18,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: 20
 
-      # 3. Install pnpm (MOST RELIABLE METHOD)
-      - name: Install pnpm
+      # 3. Enable + Install pnpm via corepack (KEY FIX)
+      - name: Setup pnpm
         run: |
-          npm install -g pnpm
-          echo "PNPM PATH:"
-          which pnpm
+          corepack enable
+          corepack prepare pnpm@10.0.0 --activate
           pnpm -v
 
       # 4. Install dependencies
