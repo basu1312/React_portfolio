@@ -14,23 +14,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. Setup Node (FIXED)
+      # 2. Setup Node (FORCE NPM ONLY)
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
           node-version: 20
-          cache: '' # Disable built-in caching to avoid conflicts with pnpm's caching mechanism
+          cache: 'npm' # ✅ FORCE npm (prevents pnpm detection)
 
-      # 3. Setup pnpm
-      - name: Setup pnpm
+      # 3. Install pnpm manually (SAFE)
+      - name: Install pnpm
         run: |
-          corepack enable
-          corepack prepare pnpm@10.0.0 --activate
+          npm install -g pnpm@10
           pnpm -v
 
       # 4. Install dependencies
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       # 5. Build
       - name: Build
