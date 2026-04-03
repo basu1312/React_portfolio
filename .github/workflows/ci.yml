@@ -9,25 +9,56 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # required for Sonar
 
+      # 2. Setup Node
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Enable Corepack (for pnpm)
+      # 3. Enable pnpm
+      - name: Enable Corepack
         run: corepack enable
 
+      # 4. Install dependencies
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Lint (skip if not configured)
-        run: pnpm run lint || echo "No lint script"
+      # 5. Lint
+      - name: Lint
+        run: pnpm run lint || echo "No lint configured"
 
-      - name: Format Check (optional)
-        run: pnpm dlx prettier --check . || echo "Prettier not configured"
-
+      # 6. Build
       - name: Build
         run: pnpm run build
+
+      # 7. SonarCloud Scan
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v2
+        with:
+          args: >
+            -Dsonar.projectKey=basu1312_React_portfolio
+            -Dsonar.organization=basu1312
+            -Dsonar.sources=src
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+
+      # 8. Quality Gate (FAIL PR if bad)
+      - name: Sonar Quality Gate
+        uses: SonarSource/sonarqube-quality-gate-action@v1
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # 9. Upload artifact
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: dist
