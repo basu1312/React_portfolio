@@ -14,13 +14,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. Setup Node
+      # 2. Setup Node (FIXED)
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
           node-version: 20
+          cache: '' # Disable built-in caching to avoid conflicts with pnpm's caching mechanism
 
-      # 3. Enable + Install pnpm via corepack (KEY FIX)
+      # 3. Setup pnpm
       - name: Setup pnpm
         run: |
           corepack enable
