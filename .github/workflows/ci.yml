@@ -21,23 +21,23 @@ jobs:
         with:
           node-version: '20'
 
-      # 3. Install pnpm (CRITICAL STEP)
+      # 3. Install pnpm (MOST RELIABLE METHOD)
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          npm install -g pnpm
+          echo "PNPM PATH:"
+          which pnpm
+          pnpm -v
 
-      # 4. Verify pnpm (debug step)
-      - name: Check pnpm version
-        run: pnpm -v
-
-      # 5. Install dependencies
+      # 4. Install dependencies
       - name: Install Dependencies
         run: pnpm install
 
-      # 6. Build
+      # 5. Build
       - name: Build
         run: pnpm run build
 
-      # 7. SonarCloud Scan
+      # 6. SonarCloud Scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v2
         with:
@@ -49,14 +49,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
 
-      # 8. Quality Gate
+      # 7. Quality Gate
       - name: Sonar Quality Gate
         uses: SonarSource/sonarqube-quality-gate-action@v1
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # 9. Upload artifact
+      # 8. Upload artifact
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
