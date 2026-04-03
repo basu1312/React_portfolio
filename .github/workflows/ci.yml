@@ -14,13 +14,13 @@ jobs:
     steps:
       # 1. Checkout code (required for Sonar PR analysis)
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       # 2. Setup Node (Vite requires Node 20+)
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '20'
 
