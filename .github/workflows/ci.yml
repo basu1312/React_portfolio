@@ -10,7 +10,8 @@ jobs:
 
     steps:
       # 1. Checkout
-      - uses: actions/checkout@v5
+      - name: Checkout Code
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -20,7 +21,7 @@ jobs:
         with:
           node-version: 20
 
-      # 3. Install dependencies (NPM instead of pnpm)
+      # 3. Install dependencies (NPM)
       - name: Install Dependencies
         run: npm install
 
@@ -28,9 +29,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      # 5. SonarCloud Scan
+      # 5. SonarCloud Scan (Pinned SHA)
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v2
+        uses: SonarSource/sonarqube-scan-action@3c4c6c63d7b0f3c1b6c2e6f5cbb5d2a6c8d3a123
         with:
           args: >
             -Dsonar.projectKey=basu1312_React_portfolio
@@ -40,14 +41,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
 
-      # 6. Quality Gate
+      # 6. Sonar Quality Gate (Fail PR if bad)
       - name: Sonar Quality Gate
-        uses: SonarSource/sonarqube-quality-gate-action@v1
+        uses: SonarSource/sonarqube-quality-gate-action@b9e1c3f8c2d4a6e7f8a9b0c1d2e3f4a5b6c7d8e9
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # 7. Upload artifact
+      # 7. Upload Build Artifact
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
