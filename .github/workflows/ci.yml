@@ -11,19 +11,21 @@ jobs:
     steps:
       # 1. Checkout
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
 
-      # 2. Setup Node (NO CACHE)
+      # 2. Setup Node (SAFE MODE)
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
           node-version: 20
+          package-manager-cache: false # 🔥 CRITICAL FIX
 
-      # 3. Install pnpm manually
+      # 3. Install pnpm (FORCE PATH FIX)
       - name: Install pnpm
         run: |
           npm install -g pnpm@10
+          export PATH=$(npm bin -g):$PATH
+          echo "PATH=$PATH"
+          which pnpm || true
           pnpm -v
 
       # 4. Install dependencies
