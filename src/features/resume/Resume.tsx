@@ -1,17 +1,8 @@
 import { motion } from 'framer-motion'
 import profile from '../../data/profile'
+import { withSectionHeading } from '../../shared/hoc/withSectionHeading'
 
-const Resume: React.FC = () => (
-  <section id="resume" className="section">
-    <motion.h2
-      className="section-title"
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-    >
-      Resume
-    </motion.h2>
-
+const ResumeContent: React.FC = () => (
     <div className="resume-cols">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -24,7 +15,7 @@ const Resume: React.FC = () => (
             <rect x="2" y="7" width="20" height="14" rx="2" />
             <path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z" />
           </svg>
-          Experience
+          Work Experience
         </div>
         <div className="timeline">
           {profile.experiences.map((exp) => (
@@ -32,13 +23,39 @@ const Resume: React.FC = () => (
               <span className="timeline-badge">{exp.period}</span>
               <div className="timeline-title">{exp.role}</div>
               <div className="timeline-company">{exp.company}</div>
-              <div className="timeline-desc">
-                <ul>
-                  {exp.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </div>
+              {'clientProjects' in exp && exp.clientProjects ? (
+                exp.clientProjects.map((cp) => (
+                  <div key={cp.client} className="timeline-client-section">
+                    <div className="timeline-client-header">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                      </svg>
+                      <span className="timeline-client-name">{cp.client}</span>
+                      {'label' in cp && cp.label && (
+                        <span className="timeline-client-label">{cp.label}</span>
+                      )}
+                    </div>
+                    <div className="timeline-desc">
+                      <ul>
+                        {cp.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                'bullets' in exp && exp.bullets && (
+                  <div className="timeline-desc">
+                    <ul>
+                      {(exp.bullets).map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              )}
             </div>
           ))}
         </div>
@@ -59,7 +76,6 @@ const Resume: React.FC = () => (
         </div>
         <div className="timeline">
           <div className="timeline-item">
-            <span className="timeline-badge">2014 &ndash; 2018</span>
             <div className="timeline-title">{profile.Education.degree}</div>
             <div className="timeline-company">{profile.Education.school}</div>
           </div>
@@ -72,7 +88,13 @@ const Resume: React.FC = () => (
         </div>
       </motion.div>
     </div>
-  </section>
 )
 
+const Resume = withSectionHeading(ResumeContent, {
+  sectionId: 'resume',
+  prefix: 'Resume &',
+  gradient: 'Credentials',
+})
+
 export default Resume
+

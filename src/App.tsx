@@ -1,71 +1,34 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import About from './features/about/About'
 import Contact from './features/contact/Contact'
 import ThemeToggle from './features/header/ThemeToggle'
 import Hero from './features/hero/Hero'
 import Projects from './features/projects/Projects'
 import Resume from './features/resume/Resume'
+import Services from './features/services/Services'
 import Sidebar from './features/sidebar/Sidebar'
+import { useActiveSection } from './shared/hooks/useActiveSection'
+import { useSmoothScroll } from './shared/hooks/useSmoothScroll'
 
-const SECTIONS = ['home', 'about', 'resume', 'portfolio', 'contact']
+const SECTIONS = ['home', 'about', 'services', 'resume', 'portfolio', 'contact']
+
+const NAV_LABELS: Record<string, string> = {
+  home: 'Home',
+  about: 'About',
+  services: 'Services',
+  resume: 'Resume',
+  portfolio: 'Works',
+  contact: 'Contact',
+}
 
 const App: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      for (const id of [...SECTIONS].reverse()) {
-        const el = document.getElementById(id)
-        if (el && window.scrollY + 120 >= el.offsetTop) {
-          setActiveSection(id)
-          break
-        }
-      }
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    const smoothScrollTo = (targetY: number, duration = 860) => {
-      const startY = window.scrollY
-      const diff = targetY - startY
-      if (Math.abs(diff) < 1) return
-      const startTime = performance.now()
-      const easeInOutCubic = (t: number) =>
-        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-      const step = (now: number) => {
-        const progress = Math.min((now - startTime) / duration, 1)
-        window.scrollTo(0, startY + diff * easeInOutCubic(progress))
-        if (progress < 1) requestAnimationFrame(step)
-      }
-      requestAnimationFrame(step)
-    }
-
-    const handler = (e: MouseEvent) => {
-      const target = e.target as Element
-      const anchor = target.closest && (target.closest('a') as HTMLAnchorElement | null)
-      if (!anchor) return
-      const href = anchor.getAttribute('href') || ''
-      if (!href.startsWith('#')) return
-      const id = href.slice(1)
-      const el = document.getElementById(id)
-      if (!el) return
-      e.preventDefault()
-      smoothScrollTo(el.getBoundingClientRect().top + window.scrollY)
-      try {
-        history.pushState(null, '', href)
-      } catch {}
-    }
-    document.addEventListener('click', handler)
-    return () => document.removeEventListener('click', handler)
-  }, [])
+  const activeSection = useActiveSection(SECTIONS)
+  useSmoothScroll()
 
   return (
     <div className="layout">
       <Sidebar
-        activeSection={activeSection}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
@@ -78,7 +41,7 @@ const App: React.FC = () => {
                 href={`#${s}`}
                 className={activeSection === s ? 'active' : ''}
               >
-                {s === 'portfolio' ? 'Works' : s.charAt(0).toUpperCase() + s.slice(1)}
+                {NAV_LABELS[s] ?? s}
               </a>
             ))}
           </div>
@@ -88,11 +51,18 @@ const App: React.FC = () => {
         </nav>
         <Hero />
         <About />
+        <Services />
         <Resume />
         <Projects />
         <Contact />
         <footer className="main-footer">
-          &copy; {new Date().getFullYear()} Basu Sharma. All rights reserved.
+          <div className="footer-content">
+            <span className="footer-brand">Basu Sharma</span>
+            <span className="footer-copy">&copy; {new Date().getFullYear()} All rights reserved.</span>
+            <span className="footer-built">
+              Built with <span>React</span> + <span>TypeScript</span>
+            </span>
+          </div>
         </footer>
       </div>
     </div>
@@ -100,3 +70,4 @@ const App: React.FC = () => {
 }
 
 export default App
+

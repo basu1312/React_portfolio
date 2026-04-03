@@ -1,26 +1,11 @@
 import { motion } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
+import { useTiltCard } from './hooks/useTiltCard'
 import type { Project } from './projectsData'
 
 const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
   const [imgError, setImgError] = useState(false)
-  const cardRef = useRef<HTMLDivElement>(null)
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current
-    if (!card) return
-    const { left, top, width, height } = card.getBoundingClientRect()
-    const x = (e.clientX - left) / width - 0.5   // –0.5 to 0.5
-    const y = (e.clientY - top) / height - 0.5
-    card.style.transform =
-      `perspective(900px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg) scale(1.045) translateZ(20px)`
-  }
-
-  const handleMouseLeave = () => {
-    const card = cardRef.current
-    if (!card) return
-    card.style.transform = ''
-  }
+  const { cardRef, handleMouseMove, handleMouseLeave } = useTiltCard()
 
   return (
     <motion.div

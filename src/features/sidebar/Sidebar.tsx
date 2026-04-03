@@ -2,15 +2,9 @@ import { useRef, useState } from 'react'
 import profile from '../../data/profile'
 
 type Props = {
-  activeSection: string
   menuOpen: boolean
   setMenuOpen: (v: boolean) => void
 }
-
-const NAV_ITEMS = [
-  { id: 'portfolio', label: 'Portfolio' },
-  { id: 'contact', label: 'Contact' },
-]
 
 const TECH_STACK = ['React', 'TypeScript', 'Next.js', 'Redux', 'MFE', 'AI / RAG']
 
@@ -67,7 +61,7 @@ const SidebarAvatar: React.FC = () => {
   )
 }
 
-const Sidebar: React.FC<Props> = ({ activeSection, menuOpen, setMenuOpen }) => {
+const Sidebar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
   return (
     <>
       <button
@@ -181,21 +175,6 @@ const Sidebar: React.FC<Props> = ({ activeSection, menuOpen, setMenuOpen }) => {
           <span className="sidebar-availability-dot" aria-hidden="true" />
           <span>Open to Opportunities</span>
         </div>
-
-        <div className="sidebar-divider" />
-
-        {/* <nav className="sidebar-nav" aria-label="Main navigation">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`sidebar-nav-link${activeSection === item.id ? ' active' : ''}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav> */}
 
 
       </aside>
