@@ -11,32 +11,24 @@ jobs:
     steps:
       # 1. Checkout
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
-      # 2. Setup Node (SAFE MODE)
+      # 2. Setup Node
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
           node-version: 20
-          package-manager-cache: false # 🔥 CRITICAL FIX
 
-      # 3. Install pnpm (FORCE PATH FIX)
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm@10
-          export PATH=$(npm bin -g):$PATH
-          echo "PATH=$PATH"
-          which pnpm || true
-          pnpm -v
-
-      # 4. Install dependencies
+      # 3. Install dependencies (NPM instead of pnpm)
       - name: Install Dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: npm install
 
-      # 5. Build
+      # 4. Build
       - name: Build
-        run: pnpm run build
+        run: npm run build
 
-      # 6. SonarCloud Scan
+      # 5. SonarCloud Scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v2
         with:
@@ -48,14 +40,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
 
-      # 7. Quality Gate
+      # 6. Quality Gate
       - name: Sonar Quality Gate
         uses: SonarSource/sonarqube-quality-gate-action@v1
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # 8. Upload artifact
+      # 7. Upload artifact
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
