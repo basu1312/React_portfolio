@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # required for Sonar
+          fetch-depth: 0
 
       # 2. Setup Node
       - name: Setup Node
@@ -49,7 +49,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
 
-      # 8. Quality Gate (FAIL PR if bad)
+      # 8. Quality Gate
       - name: Sonar Quality Gate
         uses: SonarSource/sonarqube-quality-gate-action@v1
         timeout-minutes: 5
