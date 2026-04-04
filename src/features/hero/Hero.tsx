@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
             <span className="accent">.</span>
           </h1>
           <p className="hero-typewriter">
-            I'm a&nbsp;
+            {"I'm a "}
             <span className="tw-word">
               <Typewriter words={words} />
             </span>
