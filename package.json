@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "react-scripts test",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
