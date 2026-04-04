@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
     const body = `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`;
     const mailHref = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     globalThis.location.href = mailHref;
-    setStatus('Opening mail client…');
+    setStatus('');
   };
 
   return (
