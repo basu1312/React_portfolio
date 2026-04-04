@@ -31,7 +31,7 @@ jobs:
 
       # 5. SonarCloud Scan
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v2
+        uses: SonarSource/sonarqube-scan-action@f099b441665cb71b0414100cfaf6d835492cee5f
         with:
           args: >
             -Dsonar.projectKey=basu1312_React_portfolio
