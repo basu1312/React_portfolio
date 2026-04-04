@@ -10,24 +10,22 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
-
-      - name: Enable Corepack (for pnpm)
-        run: corepack enable
+          node-version: 20
+          # remove cache OR add package-lock.json
 
       - name: Install Dependencies
-        run: pnpm install
-
-      - name: Lint (skip if not configured)
-        run: pnpm run lint || echo "No lint script"
-
-      - name: Format Check (optional)
-        run: pnpm dlx prettier --check . || echo "Prettier not configured"
+        run: npm install
 
       - name: Build
-        run: pnpm run build
+        run: npm run build
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: dist
