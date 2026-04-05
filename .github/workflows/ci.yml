@@ -2,7 +2,7 @@ name: CI Pipeline
 
 on:
   pull_request:
-    branches: ['master', 'dev']
+    branches: ['main', 'dev']
 
 jobs:
   build:
@@ -15,19 +15,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - name: Enable Corepack (for pnpm)
-        run: corepack enable
+          node-version: 20
 
       - name: Install Dependencies
-        run: pnpm install
-
-      - name: Lint (skip if not configured)
-        run: pnpm run lint || echo "No lint script"
-
-      - name: Format Check (optional)
-        run: pnpm dlx prettier --check . || echo "Prettier not configured"
+        run: npm ci
 
       - name: Build
-        run: pnpm run build
+        run: npm run build
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-build
+          path: dist

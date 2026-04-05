@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: ghcr.io/basu1312/react_portfolio
+  IMAGE_NAME: ghcr.io/basu1312/react_portfolio # ✅ FIXED
 
 jobs:
   build-and-push:
