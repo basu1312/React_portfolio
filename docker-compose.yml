@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: ghcr.io/basu1312/react_portfolio:latest
+    container_name: react_portfolio_app
+    ports:
+      - "80:80"
+    restart: unless-stopped
