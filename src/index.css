@@ -1436,8 +1436,8 @@ html[data-theme='light'] .theme-toggle {
   }
 
   .sidebar-toggle {
-    top: 10px;
-    left: 10px;
+    top: 4px;
+    left: 8px;
     width: 38px;
     height: 38px;
   }
