@@ -1,13 +1,13 @@
 # Build stage
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
 
-RUN corepack enable && pnpm install
+COPY package*.json ./
+RUN npm ci
 
 COPY . .
-RUN pnpm build
+RUN npm run build
 
 # Serve stage
 FROM nginx:alpine
