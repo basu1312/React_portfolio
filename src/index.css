@@ -443,7 +443,7 @@ button {
    ============================================================ */
 .top-nav {
   position: sticky;
-  top: 0;
+  top: 6px;
   z-index: 50;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
@@ -1436,8 +1436,8 @@ html[data-theme='light'] .theme-toggle {
   }
 
   .sidebar-toggle {
-    top: 2px;
-    left: 5px;
+    top: 8px;
+    left: 8px;
     width: 38px;
     height: 38px;
   }
