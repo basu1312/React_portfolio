@@ -405,7 +405,7 @@ button {
 .sidebar-toggle {
   display: none;
   position: fixed;
-  top: 14px;
+  top: 2px;
   left: 14px;
   z-index: 200;
   width: 42px;
