@@ -405,8 +405,8 @@ button {
 .sidebar-toggle {
   display: none;
   position: fixed;
-  top: 14px;
-  left: 14px;
+  top: 2px;
+  left: 5px;
   z-index: 200;
   width: 42px;
   height: 42px;
@@ -417,14 +417,6 @@ button {
   align-items: center;
   justify-content: center;
   color: var(--text);
-}
-@media (max-width: 580px) {
-  .sidebar-toggle {
-    top: 4px !important;
-    left: 8px !important;
-    width: 38px !important;
-    height: 38px !important;
-  }
 }
 
 .sidebar-backdrop {
@@ -1444,8 +1436,8 @@ html[data-theme='light'] .theme-toggle {
   }
 
   .sidebar-toggle {
-    top: 4px;
-    left: 8px;
+    top: 2px;
+    left: 5px;
     width: 38px;
     height: 38px;
   }
