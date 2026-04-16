@@ -14,8 +14,8 @@ const SECTIONS = [
   'home',
   'about',
   'services',
-  'resume',
   'portfolio',
+  'resume',
   'contact',
 ];
 
@@ -23,42 +23,70 @@ const NAV_LABELS: Record<string, string> = {
   home: 'Home',
   about: 'About',
   services: 'Services',
-  resume: 'Resume',
   portfolio: 'Works',
+  resume: 'Resume',
   contact: 'Contact',
 };
 
 const App: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const activeSection = useActiveSection(SECTIONS);
+
   useSmoothScroll();
 
   return (
     <div className="layout">
+      {/* Sidebar */}
       <Sidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
       <div className="main-wrap">
+        {/* Top Navigation */}
         <nav className="top-nav" aria-label="Section navigation">
           <div className="top-nav-links">
-            {SECTIONS.map((s) => (
+            {SECTIONS.map((section) => (
               <a
-                key={s}
-                href={`#${s}`}
-                className={activeSection === s ? 'active' : ''}
+                key={section}
+                href={`#${section}`}
+                className={activeSection === section ? 'active' : ''}
               >
-                {NAV_LABELS[s] ?? s}
+                {NAV_LABELS[section] ?? section}
               </a>
             ))}
           </div>
+
           <div className="top-nav-actions">
             <ThemeToggle />
           </div>
         </nav>
-        <Hero />
-        <About />
-        <Services />
-        <Resume />
-        <Projects />
-        <Contact />
+
+        {/* Sections in Professional Order */}
+        <main>
+          <section id="home">
+            <Hero />
+          </section>
+
+          <section id="about">
+            <About />
+          </section>
+
+          <section id="services">
+            <Services />
+          </section>
+
+          <section id="portfolio">
+            <Projects />
+          </section>
+
+          <section id="resume">
+            <Resume />
+          </section>
+
+          <section id="contact">
+            <Contact />
+          </section>
+        </main>
+
+        {/* Footer */}
         <footer className="main-footer">
           <div className="footer-content">
             <span className="footer-brand">Basu Sharma</span>
