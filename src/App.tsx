@@ -89,7 +89,7 @@ const App: React.FC = () => {
         {/* Footer */}
         <footer className="main-footer">
           <div className="footer-content">
-            <span className="footer-brand">Basu Sharma</span>
+            <span className="footer-brand">BASU SHARMA</span>
             <span className="footer-copy">
               &copy; {new Date().getFullYear()} All rights reserved.
             </span>
